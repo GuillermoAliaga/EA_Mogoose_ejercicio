@@ -1,0 +1,15 @@
+Uso IA (prompts):
+- Como enlazo un modelo en typescript con otro
+- import { Schema, model, InferSchemaType, HydratedDocument } from 'mongoose';
+
+const productSchema = new Schema({
+  name: { type: String },
+  precio: { type: Number },
+  organization: { type: Schema.Types.ObjectId, ref: 'Organization', required: true }
+});
+
+export type ProductSchemaType = InferSchemaType<typeof productSchema>;
+
+export type ProductDocument = HydratedDocument<ProductSchemaType>;
+
+export const ProductModel = model<ProductSchemaType>('Product', productSchema); ya he creado el modelo, hace falta que los parametros name y precio tambien tengan required, o mongoose lanzara un error?
